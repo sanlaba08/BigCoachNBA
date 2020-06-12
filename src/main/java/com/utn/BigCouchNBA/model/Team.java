@@ -12,14 +12,14 @@ import java.util.List;
 @AllArgsConstructor
 @Data
 @Entity
-@Table(name = "Equipos")
+@Table(name = "teams")
 public class Team {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_equipo")
+    @Column(name = "id_team")
     private Integer idEquipo;
 
-    @Column(name = "nombre_equipo")
+    @Column(name = "team_name")
     private String name;
 
     @OneToMany(mappedBy = "team")
