@@ -1,6 +1,6 @@
 package com.utn.BigCouchNBA.controller.web;
 
-import com.utn.BigCouchNBA.controller.model.PlayerController;
+import com.utn.BigCouchNBA.controller.PlayerController;
 import com.utn.BigCouchNBA.exceptions.TeamNotExistException;
 import com.utn.BigCouchNBA.projections.PlayerProjection;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,5 +29,11 @@ public class PlayerWebController {
             throw new TeamNotExistException("Team not exist.");
         }
     }
+
+
+
+
+
+
 
 }
