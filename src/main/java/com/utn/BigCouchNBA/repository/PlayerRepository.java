@@ -10,5 +10,8 @@ import java.util.List;
 public interface PlayerRepository extends JpaRepository<Player, Integer> {
 
     @Query(value = "select *" + " from v_team_info where Team = ?", nativeQuery = true)
-    public List<PlayerProjection> getPlayersByTeam(String team);
+    List<PlayerProjection> getPlayersByTeam(String team);
+
+    @Query(value = "select * from v_team_info where Position = ?", nativeQuery = true)
+    List<PlayerProjection> getPlayersByPosition(String position);
 }

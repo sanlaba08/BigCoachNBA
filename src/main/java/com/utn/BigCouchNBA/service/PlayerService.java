@@ -19,4 +19,8 @@ public class PlayerService {
     public List<PlayerProjection> getPlayersByTeam(String team) {
         return playerRepository.getPlayersByTeam(team);
     }
+
+    public List<PlayerProjection> getPlayersByPosition(String position) {
+        return playerRepository.getPlayersByPosition(position);
+    }
 }

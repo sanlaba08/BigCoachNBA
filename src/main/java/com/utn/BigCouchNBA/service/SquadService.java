@@ -1,6 +1,7 @@
 package com.utn.BigCouchNBA.service;
 
 import com.utn.BigCouchNBA.projections.PlayerProjection;
+import com.utn.BigCouchNBA.projections.SquadPlayerProjection;
 import com.utn.BigCouchNBA.projections.SquadStatsProjection;
 import com.utn.BigCouchNBA.repository.PlayerRepository;
 import com.utn.BigCouchNBA.repository.SquadRepository;
@@ -17,7 +18,11 @@ public class SquadService {
         this.squadRepository = squadRepository;
     }
 
-    public List<SquadStatsProjection> getPlayersStatsSquads() {
-        return squadRepository.getPlayersStatsSquads();
+    public List<SquadStatsProjection> getPlayersStatsSquads(String dni) {
+        return squadRepository.getPlayersStatsSquads(dni);
+    }
+
+    public List<SquadPlayerProjection> getPlayersSquads(String dni) {
+        return squadRepository.getPlayersSquads(dni);
     }
 }

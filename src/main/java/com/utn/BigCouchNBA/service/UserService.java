@@ -20,8 +20,8 @@ public class UserService {
         this.userRepository = userRepository;
     }
 
-    public User login(String username, String password) throws UserNotFoundException {
-        User user = userRepository.getByUsername(username, password);
+    public User login(String dni, String password) throws UserNotFoundException {
+        User user = userRepository.getByUsername(dni, password);
         return Optional.ofNullable(user).orElseThrow(() -> new UserNotFoundException());
     }
 

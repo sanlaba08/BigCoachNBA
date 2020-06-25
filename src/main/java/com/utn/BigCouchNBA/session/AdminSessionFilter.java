@@ -25,7 +25,7 @@ public class AdminSessionFilter extends OncePerRequestFilter {
 
         String sessionToken = request.getHeader("Authorization");
         Session session = sessionManager.getSession(sessionToken);
-        if (null != session && session.getLoggedUser().getRole().equals(Role.ADMIN)) {
+        if (null != session && session.getLoggedUser().getRole().equals(Role.Admin)) {
             filterChain.doFilter(request, response);
         } else {
             response.setStatus(HttpStatus.FORBIDDEN.value());

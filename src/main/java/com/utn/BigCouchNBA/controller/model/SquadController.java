@@ -2,6 +2,7 @@ package com.utn.BigCouchNBA.controller.model;
 
 import com.utn.BigCouchNBA.exceptions.SquadNotExist;
 import com.utn.BigCouchNBA.projections.PlayerProjection;
+import com.utn.BigCouchNBA.projections.SquadPlayerProjection;
 import com.utn.BigCouchNBA.projections.SquadStatsProjection;
 import com.utn.BigCouchNBA.service.PlayerService;
 import com.utn.BigCouchNBA.service.SquadService;
@@ -19,7 +20,11 @@ public class SquadController {
         this.squadService = squadService;
     }
 
-    public List<SquadStatsProjection> getPlayersStatsSquads() throws SquadNotExist {
-        return squadService.getPlayersStatsSquads();
+    public List<SquadStatsProjection> getPlayersStatsSquads(String dni) throws SquadNotExist {
+        return squadService.getPlayersStatsSquads(dni);
+    }
+
+    public List<SquadPlayerProjection> getPlayersSquads(String dni) throws SquadNotExist {
+        return squadService.getPlayersSquads(dni);
     }
 }

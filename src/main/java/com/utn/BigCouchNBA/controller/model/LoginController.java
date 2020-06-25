@@ -1,4 +1,4 @@
-package com.utn.BigCouchNBA.controller;
+package com.utn.BigCouchNBA.controller.model;
 
 import com.utn.BigCouchNBA.dto.UserDto;
 import com.utn.BigCouchNBA.exceptions.InvalidLoginException;
@@ -43,7 +43,7 @@ public class LoginController {
         String token = null;
         ResponseEntity response;
         try {
-            User user = userController.login(userDto.getUsername(), userDto.getPassword());
+            User user = userController.login(userDto.getDni(), userDto.getPassword());
             token = sessionManager.createSession(user);
             response = ResponseEntity.ok().headers(createHeaders(token)).build();
         } catch (UserNotFoundException e) {

@@ -5,9 +5,11 @@ import com.utn.BigCouchNBA.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public interface UserRepository extends JpaRepository<User, Integer> {
 
-    @Query(value = "SELECT u FROM User u WHERE u.username = :username and u.password = :pwd")
-    public User getByUsername(@Param("username") String username, @Param("pwd") String password);
+    @Query(value = "SELECT * FROM users WHERE dni = ? and pwd = ?", nativeQuery = true)
+    User getByUsername(@Param("dni") String dni, @Param("pwd") String password);
 }

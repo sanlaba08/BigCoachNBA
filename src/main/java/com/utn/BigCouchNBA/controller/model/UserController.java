@@ -1,4 +1,4 @@
-package com.utn.BigCouchNBA.controller;
+package com.utn.BigCouchNBA.controller.model;
 
 
 import com.utn.BigCouchNBA.exceptions.UserAlreadyExistsException;
@@ -21,9 +21,9 @@ public class UserController {
         this.userService = userService;
     }
 
-    public User login(String username, String password) throws UserNotFoundException, ValidationException {
-        if ((username != null) && (password != null)) {
-            return userService.login(username, password);
+    public User login(String dni, String password) throws UserNotFoundException, ValidationException {
+        if ((dni != null) && (password != null)) {
+            return userService.login(dni, password);
         } else {
             throw new ValidationException("username and password must have a value");
         }

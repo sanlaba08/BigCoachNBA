@@ -26,7 +26,7 @@ public class UserSessionFilter extends OncePerRequestFilter {
 
         String sessionToken = request.getHeader("Authorization");
         Session session = sessionManager.getSession(sessionToken);
-        if (null != session && session.getLoggedUser().getRole().equals(Role.USER)) {
+        if (null != session && session.getLoggedUser().getRole().equals(Role.User)) {
             filterChain.doFilter(request, response);
         } else {
             response.setStatus(HttpStatus.FORBIDDEN.value());
