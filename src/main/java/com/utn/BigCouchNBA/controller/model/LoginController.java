@@ -1,6 +1,6 @@
 package com.utn.BigCouchNBA.controller.model;
 
-import com.utn.BigCouchNBA.dto.UserDto;
+import com.utn.BigCouchNBA.dto.LoginDto;
 import com.utn.BigCouchNBA.exceptions.InvalidLoginException;
 import com.utn.BigCouchNBA.exceptions.UserAlreadyExistsException;
 import com.utn.BigCouchNBA.exceptions.UserNotFoundException;
@@ -39,11 +39,11 @@ public class LoginController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity login(@RequestBody UserDto userDto) throws InvalidLoginException, ValidationException {
+    public ResponseEntity login(@RequestBody LoginDto loginDto) throws InvalidLoginException, ValidationException {
         String token = null;
         ResponseEntity response;
         try {
-            User user = userController.login(userDto.getDni(), userDto.getPassword());
+            User user = userController.login(loginDto.getDni(), loginDto.getPassword());
             token = sessionManager.createSession(user);
             response = ResponseEntity.ok().headers(createHeaders(token)).build();
         } catch (UserNotFoundException e) {

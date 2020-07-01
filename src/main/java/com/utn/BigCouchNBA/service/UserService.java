@@ -1,6 +1,7 @@
 package com.utn.BigCouchNBA.service;
 
 
+import com.utn.BigCouchNBA.dto.UserDto;
 import com.utn.BigCouchNBA.exceptions.UserAlreadyExistsException;
 import com.utn.BigCouchNBA.exceptions.UserNotFoundException;
 import com.utn.BigCouchNBA.model.User;
@@ -25,21 +26,16 @@ public class UserService {
         return Optional.ofNullable(user).orElseThrow(() -> new UserNotFoundException());
     }
 
-    public User createUser(User user) throws UserAlreadyExistsException {
-        return userRepository.save(user);
+    public void createUser(UserDto user){
+        userRepository.createUser(user.getFirstName(), user.getLastName(), user.getDni(), user.getPwd());
     }
 
 
-    public void removeUser(User user) throws UserNotFoundException {
-        userRepository.delete(user);
+    public void updateUser(UserDto user){
+     userRepository.updateUser(user.getFirstName(), user.getLastName(), user.getDni(), user.getPwd());
     }
 
-    public User updateUser(User user) throws UserNotFoundException {
-     return userRepository.save(user);
+    public void deleteUser(String dni) {
+        userRepository.deleteUser(dni);
     }
-
-    public User getUser(Integer userId){
-        return userRepository.getOne(userId);
-    }
-
 }

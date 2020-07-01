@@ -1,6 +1,7 @@
 package com.utn.BigCouchNBA.controller.model;
 
 
+import com.utn.BigCouchNBA.dto.UserDto;
 import com.utn.BigCouchNBA.exceptions.UserAlreadyExistsException;
 import com.utn.BigCouchNBA.exceptions.UserNotFoundException;
 import com.utn.BigCouchNBA.model.User;
@@ -29,30 +30,15 @@ public class UserController {
         }
     }
 
-
-    public User getUserById(Integer userId) {
-        return userService.getUser(userId);
+    public void createUser(UserDto user) throws UserAlreadyExistsException {
+        userService.createUser(user);
     }
 
-
-    public User createUser(User user) throws UserAlreadyExistsException {
-        return userService.createUser(user);
-    }
-
-    public void removeUser(User user) throws UserNotFoundException {
-        userService.removeUser(user);
-    }
-
-    public void removeUsers(List<User> userList) throws UserNotFoundException {
-        for (User u : userList) {
-            userService.removeUser(u);
-        }
-    }
-
-
-    public void updateUser(User user) throws UserNotFoundException {
+    public void updateUser(UserDto user) throws UserNotFoundException {
         userService.updateUser(user);
     }
 
-
+    public void deleteUser(String dni) {
+        userService.deleteUser(dni);
+    }
 }
