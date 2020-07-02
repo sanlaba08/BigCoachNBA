@@ -8,6 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.net.URI;
+import java.net.URISyntaxException;
+
 
 @RestController
 @RequestMapping("api/admin")
@@ -26,9 +29,9 @@ public class AdminController {
     }
 
     @PostMapping("/")
-    public ResponseEntity createUser(@RequestBody UserDto userDto ) throws UserAlreadyExistsException {
-        userController.createUser(userDto);
-        return ResponseEntity.ok().build();
+    public ResponseEntity createUser(@RequestBody UserDto userDto ) throws URISyntaxException {
+        Integer idUser = userController.createUser(userDto);
+        return ResponseEntity.created(new URI("localhost:8080/api/admin/"+idUser)).body(userDto);
     }
 
     @PutMapping("/")

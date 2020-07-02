@@ -30,8 +30,8 @@ public class PlayerWebController {
         }
     }
 
-    @GetMapping("/")
-    public ResponseEntity<List<PlayerProjection>> getPlayersByPosition(@RequestParam String position) throws TeamNotExistException{
+    @GetMapping("/position/")
+    public ResponseEntity<List<PlayerProjection>> getPlayersByPosition(@RequestParam String position){
         List<PlayerProjection> players = playerController.getPlayersByPosition(position);
         if (players.size() > 0){
             return ResponseEntity.status(HttpStatus.OK).body(players);
@@ -40,10 +40,35 @@ public class PlayerWebController {
         }
     }
 
+    @GetMapping("/age/{age}")
+    public ResponseEntity<List<PlayerProjection>> getPlayersByAge(@PathVariable Integer age){
+        List<PlayerProjection> players = playerController.getPlayersByAge(age);
+        if (players.size() > 0){
+            return ResponseEntity.status(HttpStatus.OK).body(players);
+        }else{
+            return ResponseEntity.status(HttpStatus.NO_CONTENT).body(players);
+        }
+    }
 
+    @GetMapping("/firstname/")
+    public ResponseEntity<List<PlayerProjection>> getPlayersByFirstName(@RequestParam String name){
+        List<PlayerProjection> players = playerController.getPlayersByFirstName(name);
+        if (players.size() > 0){
+            return ResponseEntity.status(HttpStatus.OK).body(players);
+        }else{
+            return ResponseEntity.status(HttpStatus.NO_CONTENT).body(players);
+        }
+    }
 
-
-
+    @GetMapping("/lastname/")
+    public ResponseEntity<List<PlayerProjection>> getPlayersByLastName(@RequestParam String lastname){
+        List<PlayerProjection> players = playerController.getPlayersByLastName(lastname);
+        if (players.size() > 0){
+            return ResponseEntity.status(HttpStatus.OK).body(players);
+        }else{
+            return ResponseEntity.status(HttpStatus.NO_CONTENT).body(players);
+        }
+    }
 
 
 }

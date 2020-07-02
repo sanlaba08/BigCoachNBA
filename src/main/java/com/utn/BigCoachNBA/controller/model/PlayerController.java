@@ -23,4 +23,16 @@ public class PlayerController {
     public List<PlayerProjection> getPlayersByPosition(String position) {
         return playerService.getPlayersByPosition(position);
     }
+
+    public List<PlayerProjection> getPlayersByAge(Integer age) {
+        return playerService.getPlayersByAge(age);
+    }
+
+    public List<PlayerProjection> getPlayersByFirstName(String name) {
+        return playerService.getPlayersByFirstName(name);
+    }
+
+    public List<PlayerProjection> getPlayersByLastName(String lastname) {
+        return playerService.getPlayersByLastName(lastname);
+    }
 }

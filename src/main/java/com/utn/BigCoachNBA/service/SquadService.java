@@ -18,9 +18,8 @@ public class SquadService {
     }
 
 
-    public Squad addPlayerById(Integer id){
-        squadRepository.addPlayerById(id);
-        return squadRepository.getById(id);
+    public void addPlayerById(Integer id, String dni){
+        squadRepository.addPlayerById(id, dni);
     }
 
     public List<SquadStatsProjection> getPlayersStatsSquads(String dni) {
@@ -29,5 +28,9 @@ public class SquadService {
 
     public List<SquadPlayerProjection> getPlayersSquads(String dni) {
         return squadRepository.getPlayersSquads(dni);
+    }
+
+    public void updatePlayerById(Integer idPlayerOld, Integer idPlayerNew, String dni) {
+        squadRepository.updatePlayerById(idPlayerOld, idPlayerNew,dni);
     }
 }

@@ -18,7 +18,7 @@ public interface UserRepository extends JpaRepository<User, Integer> {
     void deleteUser(@Param("pDni") String dni);
 
     @Procedure(procedureName = "sp_insert_user")
-    void createUser(@Param("pFirstname") String firstName, @Param("pLastname") String lastName, @Param("pDni") String dni, @Param("pPwd") String pwd);
+    Integer createUser(@Param("pFirstname") String firstName, @Param("pLastname") String lastName, @Param("pDni") String dni, @Param("pPwd") String pwd);
 
     @Procedure(procedureName = "sp_update_user")
     void updateUser(@Param("pFirstname") String firstName, @Param("pLastname") String lastName, @Param("pDni") String dni, @Param("pPwd") String pwd);

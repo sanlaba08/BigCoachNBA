@@ -29,11 +29,11 @@ public class UserController {
         }
     }
 
-    public void createUser(UserDto user) throws UserAlreadyExistsException {
-        userService.createUser(user);
+    public Integer createUser(UserDto user)  {
+        return userService.createUser(user);
     }
 
-    public void updateUser(UserDto user) throws UserNotFoundException {
+    public void updateUser(UserDto user)  {
         userService.updateUser(user);
     }
 

@@ -20,9 +20,9 @@ public class SquadController {
         this.squadService = squadService;
     }
 
-    public Squad addPlayerById(Integer id) throws ValidationException {
+    public void addPlayerById(Integer id, String dni) throws ValidationException {
         if(id != null){
-            return squadService.addPlayerById(id);
+            squadService.addPlayerById(id, dni);
         }else{
             throw new ValidationException();
         }
@@ -34,5 +34,13 @@ public class SquadController {
 
     public List<SquadPlayerProjection> getPlayersSquads(String dni) throws SquadNotExist {
         return squadService.getPlayersSquads(dni);
+    }
+
+    public void updatePlayerById(Integer idPlayerOld, Integer idPlayerNew, String dni) throws ValidationException {
+        if(idPlayerOld != null || idPlayerNew != null){
+            squadService.updatePlayerById(idPlayerOld, idPlayerNew, dni);
+        }else{
+            throw new ValidationException();
+        }
     }
 }

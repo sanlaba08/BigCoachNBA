@@ -25,8 +25,8 @@ public class UserService {
         return Optional.ofNullable(user).orElseThrow(() -> new UserNotFoundException());
     }
 
-    public void createUser(UserDto user){
-        userRepository.createUser(user.getFirstName(), user.getLastName(), user.getDni(), user.getPwd());
+    public Integer createUser(UserDto user){
+        return userRepository.createUser(user.getFirstName(), user.getLastName(), user.getDni(), user.getPwd());
     }
 
 

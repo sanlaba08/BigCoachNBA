@@ -10,6 +10,7 @@ import com.utn.BigCoachNBA.projections.SquadStatsProjection;
 import com.utn.BigCoachNBA.session.SessionManager;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.orm.jpa.JpaSystemException;
 import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
@@ -30,11 +31,25 @@ public class SquadWebController {
 
 
     @PostMapping("/{idPlayer}")
-    public ResponseEntity addPlayerById( @RequestHeader("Authorization") String sessionToken, @PathVariable("idPlayer") Integer idPlayer ) throws URISyntaxException, ValidationException, ValidationException {
+    public ResponseEntity addPlayerById( @RequestHeader("Authorization") String sessionToken, @PathVariable("idPlayer") Integer idPlayer ) throws URISyntaxException, ValidationException {
+        try{
+            User session = sessionManager.getCurrentUser(sessionToken);
+            squadController.addPlayerById(idPlayer, session.getDni());
+            return ResponseEntity.created(new URI("localhost:8080/api/web/squad/"+idPlayer)).build();
+        } catch(JpaSystemException e){
+            throw new ValidationException(e.getCause().getCause().getMessage());
+        }
+    }
 
-        Squad sq = squadController.addPlayerById(idPlayer);
-
-        return ResponseEntity.created(new URI("localhost:8080/api/web/squad/"+sq.getIdSquad())).build();
+    @PutMapping("/{idPlayerOld}/{idPlayerNew}")
+    public ResponseEntity updatePlayerById( @RequestHeader("Authorization") String sessionToken, @PathVariable("idPlayerOld") Integer idPlayerOld,  @PathVariable("idPlayerNew") Integer idPlayerNew ) throws URISyntaxException, ValidationException {
+        try{
+            User session = sessionManager.getCurrentUser(sessionToken);
+            squadController.updatePlayerById(idPlayerOld,idPlayerNew, session.getDni());
+            return ResponseEntity.accepted().build();
+        } catch(JpaSystemException e){
+            throw new ValidationException(e.getCause().getCause().getMessage());
+        }
     }
 
     @GetMapping("/stats")

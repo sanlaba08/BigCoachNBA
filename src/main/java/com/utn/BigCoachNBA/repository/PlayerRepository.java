@@ -14,4 +14,13 @@ public interface PlayerRepository extends JpaRepository<Player, Integer> {
 
     @Query(value = "select * from v_team_info where Position = ?", nativeQuery = true)
     List<PlayerProjection> getPlayersByPosition(String position);
+
+    @Query(value = "select * from v_team_info where Age = ?", nativeQuery = true)
+    List<PlayerProjection> getPlayersByAge(Integer age);
+
+    @Query(value = "select * from v_team_info where PlayerName = ?", nativeQuery = true)
+    List<PlayerProjection> getPlayersByFirstName(String name);
+
+    @Query(value = "select * from v_team_info where PlayerLastName = ?", nativeQuery = true)
+    List<PlayerProjection> getPlayersByLastName(String lastname);
 }

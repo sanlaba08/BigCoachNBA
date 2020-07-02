@@ -28,16 +28,6 @@ public class LoginController {
         this.sessionManager = sessionManager;
     }
 
-    @PostMapping("/register")
-    public ResponseEntity registerUser(@RequestBody User user) throws UserAlreadyExistsException {
-        try{
-            User newUser = userController.createUser(user);
-            return ResponseEntity.created(getLocation(newUser)).build();
-        }catch (UserAlreadyExistsException ex){
-            throw new UserAlreadyExistsException(ex.getMessage());
-        }
-    }
-
     @PostMapping("/login")
     public ResponseEntity login(@RequestBody LoginDto loginDto) throws InvalidLoginException, ValidationException {
         String token = null;
